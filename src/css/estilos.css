@@ -76,10 +76,10 @@ main .personagem .imagem {
     right: 0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    width: 180px;
+    min-height: 90vh;
+    width: 160px;
     justify-content: center;
-    gap: 10px;
+    gap: 9px;
     align-items: center;
     background-color: rgba(0,0,0,0.3);
 
@@ -88,13 +88,18 @@ main .personagem .imagem {
 }
 
 .botoes .botao {
-    border: none;
+    width: 80px;    /* Ajuste para 80px ou mais */
+    height: 80px;   /* Ajuste para 80px ou mais */
+    padding: 0;     /* Remove padding */
+    border: none;   /* Remove borda */
     background: #0000;
     cursor: pointer;
     border-radius: 50%;
 }
 
 .botoes .botao img {
+    width: 100%;
+    height: auto;
     border-radius: 50%;
 }
 
