@@ -1,5 +1,9 @@
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
+    main .personagem .imagem {
+        height: 60vh; /* Ajuste a altura para caber melhor em telas menores */
+        object-fit: contain; /* Garante que a imagem fique visível sem distorção */
+    }
     .conteudo {
         left: 60px;
         max-width: 300px;
