@@ -1,46 +1,157 @@
-/* Responsividade para telas menores */
+/* Responsividade: mantém os personagens legíveis e os dez atalhos acessíveis. */
+
 @media (max-width: 768px) {
-    main .personagem .imagem {
-        height: 60vh; /* Ajuste a altura para caber melhor em telas menores */
-        object-fit: contain; /* Garante que a imagem fique visível sem distorção */
-    }
-    .conteudo {
-        left: 60px;
-        max-width: 300px;
-        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.4);
-    }
-    
-    .conteudo .nome-personagem {
-        font-size: 36px;
+    body {
+        overflow: hidden;
     }
 
+    main .personagem {
+        min-height: 100dvh;
+        height: 100vh;
+    }
+
+    main .personagem .imagem {
+        display: block;
+        width: 100%;
+        height: 60vh;
+        object-fit: contain;
+        object-position: center top;
+    }
+
+    main::after {
+        width: 100%;
+        min-height: 0;
+        height: 68vh;
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0) 25%,
+            rgba(0, 0, 0, 0.7) 65%,
+            #000 100%
+        );
+        pointer-events: none;
+    }
+
+    .conteudo {
+        top: auto;
+        bottom: 82px;
+        left: 18px;
+        right: 18px;
+        min-height: 0;
+        max-width: 540px;
+        margin: 0 auto;
+        padding: 10px 12px;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.12));
+        box-shadow: none;
+    }
+
+    .conteudo .logo {
+        display: none;
+    }
+
+    .conteudo .nome-personagem {
+        font-size: clamp(24px, 5vw, 34px);
+        line-height: 1.15;
+        margin-bottom: 8px;
+    }
+
+    .conteudo .descricao {
+        font-size: 14px;
+        line-height: 1.45;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+        overflow: hidden;
+    }
+
+    /* Menu horizontal com rolagem: todos os dez personagens continuam acessíveis. */
     .botoes {
-        width: 120px;
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 5;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        width: 100%;
+        height: 74px;
+        min-height: 0;
+        padding: 8px 12px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        background: rgba(0, 0, 0, 0.94);
+        scrollbar-width: thin;
+    }
+
+    .botoes li {
+        flex: 0 0 auto;
     }
 
     .botoes .botao {
-        width: 60px;
-        height: 60px;
+        display: block;
+        width: 48px;
+        height: 48px;
+        flex: 0 0 48px;
+        border: 2px solid transparent;
+        border-radius: 50%;
+        transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .botoes .botao img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .botoes .botao.selecionado {
+        transform: scale(1.08);
+        border-color: #fff;
+        box-shadow: 0 0 9px rgba(255, 255, 255, 0.75);
     }
 }
 
 @media (max-width: 425px) {
     .conteudo {
-        left: 30px;
-        max-width: 250px;
-        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1);
+        bottom: 78px;
+        left: 10px;
+        right: 10px;
+        padding: 8px 10px;
     }
 
     .conteudo .nome-personagem {
-        font-size: 24px;
+        font-size: 23px;
+        margin-bottom: 6px;
+    }
+
+    .conteudo .descricao {
+        font-size: 12px;
+        line-height: 1.35;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
     }
 
     .botoes {
-        width: 100px;
+        height: 68px;
+        gap: 10px;
+        padding: 7px 10px;
     }
 
     .botoes .botao {
-        width: 50px;
-        height: 50px;
+        width: 44px;
+        height: 44px;
+        flex-basis: 44px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .botoes .botao {
+        transition: none;
     }
 }
